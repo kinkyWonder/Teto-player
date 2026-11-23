@@ -1,0 +1,65 @@
+[package]
+name = "teto-player"
+version = "1.9.0"
+description = "Teto Player — локальный музыкальный плеер"
+edition = "2021"
+default-run = "teto-player"
+
+[lib]
+name = "tide_lib"
+path = "src/lib.rs"
+
+[[bin]]
+name = "teto-player"
+path = "src/main.rs"
+required-features = ["app"]
+
+[[bin]]
+name = "tide-cli"
+path = "src/cli.rs"
+
+[features]
+default = ["app"]
+app = ["dep:tauri", "dep:tauri-plugin-dialog", "dep:souvlaki", "dep:webview2-com", "dep:windows-core"]
+# embeds the built frontend instead of loading the dev server (set automatically by `tauri build`)
+custom-protocol = ["tauri/custom-protocol"]
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[dependencies]
+tauri = { version = "2", features = ["tray-icon", "image-png"], optional = true }
+tauri-plugin-dialog = { version = "2", optional = true }
+souvlaki = { version = "0.8", optional = true }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+symphonia = { version = "0.5", features = ["all"] }
+cpal = "0.15"
+rubato = "0.16"
+realfft = "3"
+rtrb = "0.3"
+crossbeam-channel = "0.5"
+lofty = "=0.21.1"
+rusqlite = { version = "0.32", features = ["bundled"] }
+walkdir = "2"
+notify = "6"
+image = { version = "0.25", default-features = false, features = ["jpeg", "png"] }
+ureq = { version = "2", features = ["json"] }
+rayon = "1"
+parking_lot = "0.12"
+fastrand = "2"
+dirs = "5"
+
+[target.'cfg(windows)'.dependencies]
+webview2-com = { version = "0.39", optional = true }
+windows-core = { version = "0.62", optional = true }
+
+[profile.release]
+opt-level = 3
+lto = "fat"
+codegen-units = 1
+panic = "abort"
+strip = true
+
+[profile.dev.package."*"]
+opt-level = 2

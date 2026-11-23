@@ -1,0 +1,18 @@
+[package]
+name = "namefix-wasm"
+version = "1.8.0"
+edition = "2021"
+description = "namefix (src-tauri/src/namefix.rs) compiled to WebAssembly for the phone build"
+
+[lib]
+crate-type = ["cdylib"]
+path = "src/lib.rs"
+
+[profile.release]
+opt-level = "s"
+lto = true
+panic = "abort"
+codegen-units = 1
+strip = true
+
+[workspace]

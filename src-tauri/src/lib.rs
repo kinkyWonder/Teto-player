@@ -1,0 +1,21 @@
+pub mod audio;
+pub mod covers;
+pub mod db;
+pub mod decode;
+pub mod dsp;
+pub mod ytmusic;
+pub mod listen;
+pub mod lyrics;
+pub mod namefix;
+pub mod namefix_db;
+pub mod webgenre;
+pub mod paths;
+pub mod prio;
+pub mod discord;
+pub mod loudness;
+pub mod nowplaying;
+pub mod scan;
+pub mod tags;
+
+#[cfg(feature = "app")]
+pub mod app;

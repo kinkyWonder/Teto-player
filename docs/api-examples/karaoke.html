@@ -1,0 +1,19 @@
+<!doctype html><html lang="ru"><head><meta charset="utf-8"><title>Teto · караоке</title>
+<style>
+body{margin:0;background:#111;color:#fff;font:600 28px "Segoe UI",system-ui,sans-serif;display:flex;flex-direction:column;align-items:center;justify-content:center;height:100vh;text-align:center}
+#t{font-size:18px;opacity:.6;margin-bottom:24px}#prev,#next{opacity:.35;font-size:22px;min-height:1.3em}#cur{min-height:1.4em;margin:10px 0}
+#bar{width:60vw;height:4px;background:#333;margin-top:30px;border-radius:2px}#fill{height:100%;width:0;background:#6fd3c9;border-radius:2px}
+</style></head><body>
+<div id="t">Teto Player не запущен</div><div id="prev"></div><div id="cur"></div><div id="next"></div><div id="bar"><div id="fill"></div></div>
+<script>
+// Позиция считается локально по pos + ts, поэтому события pos не нужны.
+const $ = (i) => document.getElementById(i); let now = null;
+const es = new EventSource('http://127.0.0.1:7710/v1/events?pos=0');
+const full = (e) => { now = JSON.parse(e.data); $('t').textContent = now.track ? `${now.track.artist} — ${now.track.title}` : '■';
+  showLine(now.lyrics || {}); };
+const showLine = (l) => { $('prev').textContent = l.prev?.text ?? ''; $('cur').textContent = l.line?.text ?? '♪'; $('next').textContent = l.next?.text ?? ''; };
+['hello', 'track', 'state'].forEach((k) => es.addEventListener(k, full));
+es.addEventListener('line', (e) => { const d = JSON.parse(e.data); if (now) { now.pos = d.pos; now.ts = d.ts; } showLine(d); });
+(function tick() { if (now?.track) { const p = now.pos + (now.state === 'playing' ? (Date.now() - now.ts) / 1000 : 0);
+  $('fill').style.width = Math.min(100, (p / now.dur) * 100) + '%'; } requestAnimationFrame(tick); })();
+</script></body></html>

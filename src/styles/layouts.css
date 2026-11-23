@@ -1,0 +1,177 @@
+/* =====================================================================
+   Layouts ("разметка") — shapes, type and the philosophy of the UI.
+   The colour theme is applied on top, so any theme works with any layout.
+   ===================================================================== */
+@import '@fontsource/doto/latin-700.css';
+@import '@fontsource/doto/latin-900.css';
+@import '@fontsource/dotgothic16/latin-400.css';
+@import '@fontsource/dotgothic16/cyrillic-400.css';
+@import '@fontsource/jetbrains-mono/latin-400.css';
+@import '@fontsource/jetbrains-mono/cyrillic-400.css';
+@import '@fontsource/jetbrains-mono/latin-500.css';
+@import '@fontsource/jetbrains-mono/cyrillic-500.css';
+@import '@fontsource-variable/inter/wght.css';
+
+/* ---------------------------------------------------------------------
+   NOTHING — dot-matrix type, monochrome, hairlines, one red signal dot.
+   Display: Doto (Latin) / DotGothic16 (Cyrillic). Labels: mono, uppercase.
+   --------------------------------------------------------------------- */
+[data-layout=nothing]{
+  --dot:"Doto","DotGothic16",var(--mono);
+  --mono:"JetBrains Mono","Cascadia Mono",Consolas,monospace;
+  --font:"Inter Variable","Segoe UI Variable Text","Segoe UI","Noto Sans",sans-serif;
+  --line:rgba(var(--ov),.14);--line2:rgba(var(--ov),.22);
+}
+[data-layout=nothing] body{letter-spacing:.005em}
+[data-layout=nothing] .win{background:radial-gradient(rgba(var(--ov),.07) 1px,transparent 1.2px) 0 0/14px 14px,var(--bg)}
+[data-layout=nothing] .ambient,[data-layout=nothing] .np .glow{display:none}
+[data-layout=nothing] .ptitle,[data-layout=nothing] .ahead h1,[data-layout=nothing] .m-ti b,[data-layout=nothing] .mixb.teto b,[data-layout=nothing] .gtile b,[data-layout=nothing] .m-brand,[data-layout=nothing] .brand,[data-layout=nothing] .empty-lib h2,[data-layout=nothing] .vz-info b{
+  font-family:var(--dot);font-weight:700;letter-spacing:.02em;text-transform:uppercase}
+[data-layout=nothing] .ptitle{font-size:34px;line-height:1.05}
+[data-layout=nothing] .sec,[data-layout=nothing] .set h3,[data-layout=nothing] .k,[data-layout=nothing] .psub,[data-layout=nothing] .tt-head,[data-layout=nothing] .cap,[data-layout=nothing] .m-tabs button span,[data-layout=nothing] .m-fsrc small,[data-layout=nothing] .fmt,[data-layout=nothing] .hrow .hdur,[data-layout=nothing] .trow .d{
+  font-family:var(--mono);text-transform:uppercase;letter-spacing:.08em}
+[data-layout=nothing] .sec{font-size:12px;font-weight:500;color:var(--t2);padding-bottom:8px;border-bottom:1px dashed var(--line2)}
+[data-layout=nothing] .psub{font-size:11px;color:var(--t3)}
+/* sharp, flat */
+[data-layout=nothing] .card .cw,[data-layout=nothing] .cv,[data-layout=nothing] .ahead .cv,[data-layout=nothing] .m-art .cv,[data-layout=nothing] .m-mini .cv,[data-layout=nothing] .trow.m .mc .cv{border-radius:2px!important}
+[data-layout=nothing] .card .cw{box-shadow:0 0 0 1px var(--line)!important}
+[data-layout=nothing] .card.round .cw{border-radius:50%!important}
+[data-layout=nothing] .card .cw:after{display:none}
+[data-layout=nothing] .gtile{border-radius:4px;background:var(--s1)!important;border:1px solid var(--line2);color:var(--t1)}
+[data-layout=nothing] .gtile b{text-shadow:none;font-size:18px}
+[data-layout=nothing] .gtile .gp{background:transparent;border:1px solid var(--line2)}
+[data-layout=nothing] .gtile.mix,[data-layout=nothing] .gtile.teto{background:rgb(var(--acc))!important;color:#fff;border-color:transparent}
+[data-layout=nothing] .gchip{background:transparent!important;border:1px solid var(--line2);color:var(--t1);font-family:var(--mono);text-transform:uppercase;font-size:11px;letter-spacing:.06em;border-radius:999px}
+[data-layout=nothing] .mixb{background:transparent;border:1px solid var(--t1);color:var(--t1);box-shadow:none;border-radius:999px}
+[data-layout=nothing] .mixb.teto .tlogo{background:rgb(var(--acc));color:#fff}
+[data-layout=nothing] .mixb.teto .tgo{background:var(--t1);color:var(--bg)}
+[data-layout=nothing] .mixb span{font-family:var(--mono);font-size:10.5px;letter-spacing:.04em;text-transform:uppercase;opacity:.6}
+[data-layout=nothing] .play,[data-layout=nothing] .btn.pri{background:var(--t1);color:var(--bg);box-shadow:none!important;border-radius:999px;font-family:var(--mono);text-transform:uppercase;letter-spacing:.08em;font-size:12px}
+[data-layout=nothing] .play:hover,[data-layout=nothing] .btn.pri:hover{background:rgb(var(--acc));color:#fff}
+[data-layout=nothing] .btn,[data-layout=nothing] .ib{border-radius:999px;border-color:var(--line2)}
+[data-layout=nothing] .btn{font-family:var(--mono);text-transform:uppercase;letter-spacing:.06em;font-size:11px}
+[data-layout=nothing] .srow{background:transparent;border:0;border-bottom:1px dashed var(--line2);border-radius:0;margin:0;padding:14px 4px}
+[data-layout=nothing] .srow b{font-weight:500}
+[data-layout=nothing] .seg{background:transparent;border-radius:999px;border-color:var(--line2)}
+[data-layout=nothing] .seg button{border-radius:999px;font-family:var(--mono);text-transform:uppercase;font-size:10.5px;letter-spacing:.06em}
+[data-layout=nothing] .seg button.on{background:var(--t1);color:var(--bg)}
+[data-layout=nothing] .tg{border-radius:999px;background:transparent;border:1px solid var(--line2)}
+[data-layout=nothing] .tg:after{top:2px;left:2px;background:var(--t2)}
+[data-layout=nothing] .tg.on{background:transparent;border-color:var(--t1)}
+[data-layout=nothing] .tg.on:after{background:rgb(var(--acc))}
+[data-layout=nothing] .trow{border-radius:0;border-bottom:1px dashed var(--line)}
+[data-layout=nothing] .trow.on .tt,[data-layout=nothing] .trow.m.on .tt2 b{color:var(--t1)}
+[data-layout=nothing] .trow.on .n:before,[data-layout=nothing] .trow.m.on .tt2 b:before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:rgb(var(--acc));margin-right:8px;vertical-align:2px}
+[data-layout=nothing] .nav{border-radius:0;font-family:var(--mono);text-transform:uppercase;font-size:11.5px;letter-spacing:.07em}
+[data-layout=nothing] .nav.on{background:transparent;color:var(--t1)}
+[data-layout=nothing] .nav.on svg{color:rgb(var(--acc))}
+[data-layout=nothing] .side,[data-layout=nothing] .bar,[data-layout=nothing] .top{background:transparent;border-color:var(--line)}
+[data-layout=nothing] .menu,[data-layout=nothing] .dlg,[data-layout=nothing] .pop{border-radius:6px;background:var(--bg);border:1px solid var(--line2)}
+[data-layout=nothing] .note{border-left:0;border:1px dashed var(--line2);border-radius:4px;font-family:var(--mono);font-size:11px}
+[data-layout=nothing] .note svg{color:rgb(var(--acc))}
+[data-layout=nothing] .g-chip{font-family:var(--mono);text-transform:uppercase;font-size:11px;letter-spacing:.05em}
+[data-layout=nothing] .g-chip.on{background:var(--t1);color:var(--bg)}
+[data-layout=nothing] .mchk.on{background:rgb(var(--acc));border-color:rgb(var(--acc))}
+/* phone */
+[data-layout=nothing] .m-app .m-tabs{background:var(--bg);border-top:1px dashed var(--line2)}
+[data-layout=nothing] .m-app .m-tabs button svg,[data-layout=nothing] .m-tabs button.on .m-tlogo svg{color:inherit}
+[data-layout=nothing] .m-app .m-tabs button{position:relative;font-size:9.5px}
+[data-layout=nothing] .m-app .m-tabs button.on:before{content:"";position:absolute;top:7px;left:calc(50% + 14px);width:6px;height:6px;border-radius:50%;background:rgb(var(--acc))}
+[data-layout=nothing] .m-app .m-mini{background:var(--bg);border:1px solid var(--t1);border-radius:999px;box-shadow:none;padding-left:6px}
+[data-layout=nothing] .m-app .m-mini .cv{border-radius:50%!important}
+[data-layout=nothing] .m-app .m-mp{left:28px;right:28px}
+[data-layout=nothing] .m-app .m-mp div{background:rgb(var(--acc))}
+[data-layout=nothing] .m-app .m-srch{background:transparent;border:1px solid var(--line2)}
+[data-layout=nothing] .m-app .m-srch input{font-family:var(--mono);font-size:13px}
+[data-layout=nothing] .m-app .m-srch input::placeholder{text-transform:uppercase;letter-spacing:.08em}
+[data-layout=nothing] .m-full{background:var(--bg)}
+[data-layout=nothing] .m-full .m-fbg{display:none}
+[data-layout=nothing] .m-ctl .pp{background:rgb(var(--acc));color:#fff}
+[data-layout=nothing] .m-ti b{font-size:24px}
+[data-layout=nothing] .m-themes button{border-radius:4px;background:transparent;border-style:dashed}
+[data-layout=nothing] .m-themes button.on{border-style:solid;border-color:var(--t1)}
+
+/* ---------------------------------------------------------------------
+   APPLE — SF-like type (system / Inter), large bold titles, translucent
+   blurred bars, grey rounded buttons with accent text, inset grouped lists.
+   --------------------------------------------------------------------- */
+[data-layout=apple]{
+  --font:-apple-system,BlinkMacSystemFont,"SF Pro Text","Inter Variable","Segoe UI Variable Text","Segoe UI",sans-serif;
+  --line:rgba(var(--ov),.08);--line2:rgba(var(--ov),.14);
+  --fill:rgba(118,118,128,.16);
+}
+[data-layout=apple] body{letter-spacing:-.01em}
+[data-layout=apple] .ambient{opacity:.5}
+[data-layout=apple] .ptitle{font-size:34px;font-weight:800;letter-spacing:-.035em}
+[data-layout=apple] .ahead h1{font-weight:800;letter-spacing:-.03em}
+[data-layout=apple] .sec{font-size:22px;font-weight:750;letter-spacing:-.025em}
+[data-layout=apple] .sec button{color:rgb(var(--acc));font-size:15px;font-weight:400}
+[data-layout=apple] .k{color:rgb(var(--acc))!important;font-weight:600}
+[data-layout=apple] .card .cw{border-radius:10px;box-shadow:0 0 0 .5px rgba(var(--ov),.1),0 8px 24px -14px rgba(0,0,0,.45)}
+[data-layout=apple] .card .cw:after{display:none}
+[data-layout=apple] .card b{font-weight:500}
+[data-layout=apple] .play{background:var(--fill);color:rgb(var(--acc));border-radius:10px;box-shadow:none!important;font-weight:600}
+[data-layout=apple] .play:hover{background:rgba(118,118,128,.24)}
+[data-layout=apple] .ib{border:0;background:var(--fill);color:rgb(var(--acc))}
+[data-layout=apple] .btn{border:0;background:var(--fill);color:rgb(var(--acc));border-radius:10px;font-weight:500}
+[data-layout=apple] .btn.pri{background:rgb(var(--acc));color:#fff;box-shadow:none!important}
+[data-layout=apple] .mixb{background:var(--fill);color:var(--t1);box-shadow:none;border-radius:14px}
+[data-layout=apple] .mixb.teto .tlogo{background:rgb(var(--acc));color:#fff}
+[data-layout=apple] .mixb.teto .tgo{background:rgb(var(--acc));color:#fff}
+[data-layout=apple] .gtile{border-radius:12px;border:0}
+[data-layout=apple] .gchip{border-radius:10px}
+/* inset grouped lists */
+[data-layout=apple] .set h3{text-transform:none;letter-spacing:-.01em;font-size:13px;color:var(--t3);font-weight:400;margin:26px 0 6px 16px}
+[data-layout=apple] .srow{background:var(--s1);border:0;border-radius:0;margin:0;position:relative;padding:12px 16px}
+[data-layout=apple] .srow:after{content:"";position:absolute;left:16px;right:0;bottom:0;height:.5px;background:var(--line2)}
+[data-layout=apple] h3+.srow,[data-layout=apple] .note+.srow,[data-layout=apple] .themes+.srow{border-top-left-radius:12px;border-top-right-radius:12px}
+[data-layout=apple] .srow:has(+h3),[data-layout=apple] .srow:has(+.note),[data-layout=apple] .srow:last-child{border-bottom-left-radius:12px;border-bottom-right-radius:12px}
+[data-layout=apple] .srow:has(+h3):after,[data-layout=apple] .srow:has(+.note):after,[data-layout=apple] .srow:last-child:after{display:none}
+[data-layout=apple] .note{border-left:0;padding:8px 16px 0;font-size:12.5px}
+/* iOS segmented control + switches */
+[data-layout=apple] .seg{background:var(--fill);border:0;border-radius:9px;padding:2px}
+[data-layout=apple] .seg button{border-radius:7px;color:var(--t1);font-weight:500}
+[data-layout=apple] .seg button.on{background:var(--s3);color:var(--t1);box-shadow:0 3px 8px rgba(0,0,0,.12),0 0 0 .5px rgba(0,0,0,.04)}
+[data-layout=apple] .tg{width:51px;height:31px;border-radius:16px;background:rgba(120,120,128,.24)}
+[data-layout=apple] .tg:after{width:27px;height:27px;left:2px;top:2px;background:#fff;box-shadow:0 3px 8px rgba(0,0,0,.15),0 3px 1px rgba(0,0,0,.06)}
+[data-layout=apple] .tg.on{background:#34c759}
+[data-layout=apple] .tg.on:after{transform:translateX(20px);background:#fff}
+[data-layout=apple] .trow{border-radius:0;position:relative}
+[data-layout=apple] .trow.m:after{content:"";position:absolute;left:56px;right:0;bottom:0;height:.5px;background:var(--line2)}
+[data-layout=apple] .trow.on .tt,[data-layout=apple] .trow.m.on .tt2 b{color:rgb(var(--acc))}
+[data-layout=apple] .nav{border-radius:8px}
+[data-layout=apple] .nav.on{background:var(--fill)}
+[data-layout=apple] .nav.on svg{color:rgb(var(--acc))}
+[data-layout=apple] .menu,[data-layout=apple] .dlg,[data-layout=apple] .pop{border-radius:14px;background:rgba(var(--s2-rgb),.82);backdrop-filter:blur(30px) saturate(1.8);border:.5px solid var(--line2)}
+[data-layout=apple] .side{background:rgba(var(--s2-rgb),.6);backdrop-filter:blur(30px)}
+[data-layout=apple] .bar{background:rgba(var(--s2-rgb),.78);backdrop-filter:blur(30px) saturate(1.8)}
+[data-layout=apple] .g-chip{border-radius:10px;border:0;background:var(--fill);color:var(--t1)}
+[data-layout=apple] .g-chip.on{background:rgb(var(--acc));color:#fff}
+[data-layout=apple] .mchk.on{background:rgb(var(--acc));border-color:rgb(var(--acc))}
+/* phone: blurred translucent header, tab bar and mini player over the content */
+[data-layout=apple] .m-app{position:relative}
+[data-layout=apple] .m-app .m-head{position:absolute;top:0;left:0;right:0;z-index:20;background:rgba(var(--bg-rgb),.72);backdrop-filter:blur(24px) saturate(1.8);-webkit-backdrop-filter:blur(24px) saturate(1.8);border-bottom:.5px solid var(--line2)}
+[data-layout=apple] .m-app .m-content{padding-top:calc(60px + var(--sat));padding-bottom:calc(150px + var(--sab))}
+[data-layout=apple] .m-app .m-tabs{position:absolute;left:0;right:0;bottom:0;z-index:20;background:rgba(var(--s2-rgb),.74);backdrop-filter:blur(24px) saturate(1.8);-webkit-backdrop-filter:blur(24px) saturate(1.8);border-top:.5px solid var(--line2)}
+[data-layout=apple] .m-app .m-tabs button.on,[data-layout=apple] .m-app .m-tabs button.on svg{color:rgb(var(--acc))}
+[data-layout=apple] .m-app .m-tabs button span{font-size:10.5px;font-weight:500}
+[data-layout=apple] .m-app .m-mini{position:absolute;left:0;right:0;bottom:calc(66px + var(--sab));z-index:21;border-radius:14px;background:rgba(var(--s2-rgb),.8);backdrop-filter:blur(24px) saturate(1.8);-webkit-backdrop-filter:blur(24px) saturate(1.8);border:.5px solid var(--line2);box-shadow:0 8px 30px -10px rgba(0,0,0,.35)}
+[data-layout=apple] .m-app .m-mini .m-ib{color:var(--t1)}
+[data-layout=apple] .m-app .m-srch{background:var(--fill);border-radius:10px;height:36px;color:var(--t3)}
+[data-layout=apple] .m-app .m-content .ptitle{font-size:34px}
+[data-layout=apple] .m-app .play{height:48px;border-radius:12px;flex:1;max-width:170px;justify-content:center}
+[data-layout=apple] .m-app .ahead .acts,[data-layout=apple] .m-app .acts{justify-content:center}
+[data-layout=apple] .m-app .ahead .cv{border-radius:12px;box-shadow:0 20px 40px -18px rgba(0,0,0,.5)}
+[data-layout=apple] .m-app .card.plc .cw,[data-layout=apple] .m-app .card .cw{border-radius:10px}
+[data-layout=apple] .m-app .cat-links{gap:0;background:var(--s1);border-radius:12px;overflow:hidden}
+[data-layout=apple] .m-app .cat-links button,[data-layout=apple] .cat-links button{border:0;border-radius:0;border-bottom:.5px solid var(--line2);background:var(--s1)}
+[data-layout=apple] .cat-links button svg:first-child{color:rgb(var(--acc))}
+[data-layout=apple] .m-full .m-ctl .pp{background:transparent;color:var(--t1);width:80px}
+[data-layout=apple] .m-full .m-ctl .pp svg{width:42px;height:42px}
+[data-layout=apple] .m-themes{background:var(--s1);padding:4px 16px 14px;gap:8px;position:relative}
+[data-layout=apple] .m-themes:after{content:"";position:absolute;left:16px;right:0;bottom:0;height:.5px;background:var(--line2)}
+[data-layout=apple] .m-themes button{border:0;background:rgba(var(--ov),.05);border-radius:12px;padding:10px 4px}
+[data-layout=apple] .srow:has(+.m-themes):after{display:none}
+[data-layout=apple] .m-themes button.on{box-shadow:0 0 0 2px rgb(var(--acc))}
+[data-layout=apple] .m-app .m-pickbar{position:absolute;left:0;right:0;bottom:0;z-index:20;background:rgba(var(--s2-rgb),.8);backdrop-filter:blur(24px)}
+[data-layout=apple] h3+.m-themes,[data-layout=apple] .note+.m-themes{border-top-left-radius:12px;border-top-right-radius:12px;padding-top:14px;margin-top:6px}

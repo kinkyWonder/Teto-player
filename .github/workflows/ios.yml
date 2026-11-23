@@ -1,0 +1,62 @@
+# Builds an unsigned Teto.ipa on a free GitHub macOS machine.
+# Works both with the full source in the repo and with just the source .zip (e.g. TetoPlayer-1.9.0-src.zip) uploaded to the repo root.
+name: Сборка для iPhone
+on:
+  workflow_dispatch:
+  push:
+jobs:
+  ios:
+    runs-on: macos-15
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Исходники
+        run: |
+          # any .zip in the repo root works (teto-source.zip, TetoPlayer-1.9.0-src.zip, ...)
+          Z=$(ls -t *.zip 2>/dev/null | head -1)
+          if [ -n "$Z" ]; then
+            mkdir -p _src && unzip -q -o "$Z" -d _src
+            # the zip may contain the project directly or inside one folder
+            if [ -f _src/package.json ]; then echo "APP=_src" >> $GITHUB_ENV; else echo "APP=$(dirname $(ls _src/*/package.json | head -1))" >> $GITHUB_ENV; fi
+          else
+            echo "APP=." >> $GITHUB_ENV
+          fi
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - uses: maxim-lobanov/setup-xcode@v1
+        with:
+          xcode-version: latest-stable
+
+      - name: Сборка интерфейса
+        working-directory: ${{ env.APP }}
+        run: |
+          npm ci || npm install
+          npm run build
+          npx cap sync ios
+
+      - name: Сборка приложения
+        working-directory: ${{ env.APP }}/ios/App
+        run: |
+          xcodebuild -project App.xcodeproj -scheme App -configuration Release \
+            -sdk iphoneos -destination 'generic/platform=iOS' -derivedDataPath "$RUNNER_TEMP/dd" \
+            CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY="" \
+            build > "$RUNNER_TEMP/build.log" 2>&1 || { grep -E "error:|fatal" "$RUNNER_TEMP/build.log" | head -40; tail -n 80 "$RUNNER_TEMP/build.log"; exit 1; }
+          tail -n 15 "$RUNNER_TEMP/build.log"
+          test -d "$RUNNER_TEMP/dd/Build/Products/Release-iphoneos/App.app"
+
+      - name: Упаковка Teto.ipa
+        run: |
+          cd "$RUNNER_TEMP"
+          mkdir -p Payload
+          cp -R dd/Build/Products/Release-iphoneos/App.app Payload/
+          zip -qry "$GITHUB_WORKSPACE/Teto.ipa" Payload
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Teto-iPhone
+          path: Teto.ipa
+          retention-days: 30

@@ -1,0 +1,81 @@
+apply plugin: 'com.android.application'
+
+android {
+    namespace = "app.teto.player"
+    compileSdk = rootProject.ext.compileSdkVersion
+    defaultConfig {
+        applicationId "app.teto.player"
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode 190
+        versionName "1.9.0"
+        // yt-dlp (python) + ffmpeg ship as native libraries: 64-bit ARM phones only, like Dot Player
+        ndk { abiFilters 'arm64-v8a' }
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        aaptOptions {
+             // Files and dirs to omit from the packaged assets dir, modified to accommodate modern web apps.
+             // Default: https://android.googlesource.com/platform/frameworks/base/+/282e181b58cf72b6ca770dc7ca5f91f135444502/tools/aapt/AaptAssets.cpp#61
+            ignoreAssetsPattern = '!.svn:!.git:!.ds_store:!*.scc:.*:!CVS:!thumbs.db:!picasa.ini:!*~'
+        }
+    }
+    // Release key: android/keystore.properties (+ android/keystore/teto-release.jks). Never commit them.
+    // Without the file the release build falls back to the debug key so `assembleRelease` still works.
+    def ksFile = rootProject.file('keystore.properties')
+    def ks = new Properties()
+    if (ksFile.exists()) ksFile.withInputStream { ks.load(it) }
+    signingConfigs {
+        release {
+            if (ksFile.exists()) {
+                storeFile rootProject.file(ks['storeFile'])
+                storePassword ks['storePassword']
+                keyAlias ks['keyAlias']
+                keyPassword ks['keyPassword']
+            }
+        }
+    }
+    packagingOptions {
+        resources { excludes += ['META-INF/DEPENDENCIES', 'META-INF/LICENSE*', 'META-INF/NOTICE*'] }
+        // youtubedl-android unpacks python / ffmpeg from the .so archives: needs legacy (extracted) native libs
+        jniLibs { useLegacyPackaging true }
+    }
+    buildTypes {
+        release {
+            signingConfig ksFile.exists() ? signingConfigs.release : signingConfigs.debug
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+repositories {
+    flatDir{
+        dirs '../capacitor-cordova-android-plugins/src/main/libs', 'libs'
+    }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation "androidx.appcompat:appcompat:$androidxAppCompatVersion"
+    implementation "androidx.coordinatorlayout:coordinatorlayout:$androidxCoordinatorLayoutVersion"
+    implementation "androidx.core:core-splashscreen:$coreSplashScreenVersion"
+    implementation project(':capacitor-android')
+    implementation "androidx.media:media:1.7.1"
+    // "Download" like Dot Player: yt-dlp + FFmpeg inside the app (YouTube, SoundCloud, links) → MP3 with cover and tags
+    implementation "io.github.junkfood02.youtubedl-android:library:0.18.1"
+    implementation "io.github.junkfood02.youtubedl-android:ffmpeg:0.18.1"
+    testImplementation "junit:junit:$junitVersion"
+    androidTestImplementation "androidx.test.ext:junit:$androidxJunitVersion"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$androidxEspressoCoreVersion"
+    implementation project(':capacitor-cordova-android-plugins')
+}
+
+apply from: 'capacitor.build.gradle'
+
+try {
+    def servicesJSON = file('google-services.json')
+    if (servicesJSON.text) {
+        apply plugin: 'com.google.gms.google-services'
+    }
+} catch(Exception e) {
+    logger.info("google-services.json not found, google-services plugin not applied. Push Notifications won't work")
+}

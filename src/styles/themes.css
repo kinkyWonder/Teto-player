@@ -1,0 +1,74 @@
+/* themes: every colour in styles.css goes through these variables */
+
+/* Tide: arctic night — icy blue and polar violet over a deep navy, a faint aurora on the horizon */
+:root,[data-theme=tide]{--bg:#070b14;--bg-rgb:7,11,20;--s1:#0c1220;--s2:#111a2b;--s2-rgb:17,26,43;--s3:#172236;--s3-rgb:23,34,54;--acc:124,196,255;--acc2:169,155,255;--acc3:40,84,160;--acc-h:#9bd3ff;--on-acc:#04152b;--tint:180,205,255;--txt:218,230,252;--t1:#ecf3ff;--bar:#090e19;--on-pp:#06101f;--pp-h:#fff;--ov:255,255,255;
+  --fx:radial-gradient(80% 45% at 15% -8%,rgba(124,196,255,.16),transparent 70%),radial-gradient(70% 40% at 90% -10%,rgba(169,155,255,.14),transparent 70%);--fx-o:1}
+[data-theme=tide] img.cv{box-shadow:0 18px 40px -22px rgba(124,196,255,.35),0 0 0 1px rgba(200,225,255,.06)}
+[data-theme=tide] .m-ctl .pp,[data-theme=tide] .btns .pp{background:linear-gradient(145deg,#eaf5ff,#b9dcff);color:#06101f;box-shadow:0 10px 30px -10px rgba(124,196,255,.65)}
+
+/* Teto */
+[data-theme=teto]{--bg:#0f0a0c;--bg-rgb:15,10,12;--s1:#160f12;--s2:#1d1418;--s2-rgb:29,20,24;--s3:#261a1f;--s3-rgb:38,26,31;--acc:255,77,109;--acc2:255,140,163;--acc3:140,20,45;--acc-h:#ff6f88;--on-acc:#2a0610;--tint:255,170,190;--txt:245,220,226;--t1:#fbeef1;--bar:#120c0e;--on-pp:#14080b;--pp-h:#fff;--ov:255,255,255}
+
+/* AMOLED: true black for OLED screens. Pure white type, hairline silver edges, a cold glow on what is active.
+   Surfaces stay black (no grey slabs) — depth comes from 1px lines and light, not from fills. */
+[data-theme=oled]{--bg:#000000;--bg-rgb:0,0,0;--s1:#050505;--s2:#0c0c0c;--s2-rgb:12,12,12;--s3:#141414;--s3-rgb:20,20,20;--acc:255,255,255;--acc2:154,154,162;--acc3:70,70,78;--acc-h:#e8e8ee;--on-acc:#000;--tint:255,255,255;--txt:236,236,240;--t1:#f5f5f7;--bar:#000000;--on-pp:#000;--pp-h:#dcdce2;--ov:255,255,255;
+  --line:rgba(255,255,255,.075);--line2:rgba(255,255,255,.14)}
+[data-theme=oled] img.cv{box-shadow:0 0 0 1px rgba(255,255,255,.09),0 20px 50px -24px rgba(255,255,255,.12)}
+[data-theme=oled] .m-art .cv{box-shadow:0 0 0 1px rgba(255,255,255,.1),0 40px 90px -40px rgba(255,255,255,.22)}
+[data-theme=oled] .m-srch,[data-theme=oled] .m-mini{background:#000;box-shadow:inset 0 0 0 1px rgba(255,255,255,.1)}
+[data-theme=oled] .m-tabs{background:#000;border-top:1px solid rgba(255,255,255,.08)}
+[data-theme=oled] .m-tabs button.on{text-shadow:0 0 12px rgba(255,255,255,.55)}
+[data-theme=oled] .m-tabs button.on svg{filter:drop-shadow(0 0 6px rgba(255,255,255,.55))}
+[data-theme=oled] .m-ctl .pp,[data-theme=oled] .btns .pp{background:#fff;color:#000;box-shadow:0 0 0 1px rgba(255,255,255,.3),0 0 34px -6px rgba(255,255,255,.45)}
+[data-theme=oled] .m-ctl button.on,[data-theme=oled] .btns button.on{color:#fff;filter:drop-shadow(0 0 6px rgba(255,255,255,.7))}
+[data-theme=oled] .gtile{background:#000!important;border:1px solid rgba(255,255,255,.12);color:#fff}
+[data-theme=oled] .gtile:before{content:'';position:absolute;inset:0;pointer-events:none;opacity:.55;background:radial-gradient(110% 120% at 100% 100%,var(--gb,#555),transparent 58%),radial-gradient(90% 80% at 0% 0%,rgba(255,255,255,.12),transparent 55%)}
+[data-theme=oled] .gtile:after{content:'';position:absolute;left:16px;right:16px;bottom:0;height:2px;border-radius:2px;background:linear-gradient(90deg,var(--ga,#fff),var(--gb,#888));opacity:.85;pointer-events:none}
+[data-theme=oled] .gtile>*{position:relative}
+[data-theme=oled] .gtile .gp,[data-theme=oled] .gtile .gl{position:absolute}
+[data-theme=oled] .gtile.mix:before,[data-theme=oled] .gtile.mix:after,[data-theme=oled] .gtile.add:before,[data-theme=oled] .gtile.add:after{display:none}
+[data-theme=oled] .gchip{background:#000!important;border:1px solid color-mix(in srgb,var(--ga,#fff) 45%,transparent);color:#fff}
+[data-theme=oled] .gtile.mix,[data-theme=oled] .gtile.teto{background:linear-gradient(135deg,#fff,#c9c9d1)!important;color:#000;border-color:transparent}
+[data-theme=oled] .mixb.teto .tlogo,[data-theme=oled] .mixb.teto .tgo{background:rgba(255,255,255,.1)}
+[data-theme=oled] .mixb.teto .tgo{background:#fff;color:#000}
+[data-theme=oled] .mixb.teto{color:#fff;background:#000;box-shadow:inset 0 0 0 1px rgba(255,255,255,.18),0 0 40px -18px rgba(255,255,255,.4)}
+[data-theme=oled] .play,[data-theme=oled] .btn.pri{box-shadow:0 0 24px -8px rgba(255,255,255,.6)}
+[data-theme=oled] .m-fbg{opacity:.32}
+[data-theme=oled] .slh .fill,[data-theme=oled] .sl .fill{box-shadow:0 0 10px rgba(255,255,255,.6)}
+
+/* Pick me: everything pink — airy blush surfaces, bubblegum accents, candy-glass buttons.
+   Controls are a clear raspberry pink (never dark plum), the play button is a glossy pink pill. */
+[data-theme=pickme]{--bg:#fff0f7;--bg-rgb:255,240,247;--s1:#ffe3f0;--s2:#fff7fb;--s2-rgb:255,247,251;--s3:#ffffff;--s3-rgb:255,255,255;--acc:255,79,163;--acc2:255,166,213;--acc3:240,98,170;--acc-h:#ff2f93;--on-acc:#fff;--tint:226,62,142;--txt:110,36,78;--t1:#5e1d40;--bar:#ffe8f3;--on-pp:#fff;--pp-h:#ff2f93;--ov:205,40,120;
+  --fx:radial-gradient(70% 45% at 0% 0%,rgba(255,166,213,.35),transparent 70%),radial-gradient(60% 40% at 100% 100%,rgba(255,122,190,.18),transparent 70%);--fx-o:1}
+[data-theme=pickme] .np .glow{opacity:.55}[data-theme=pickme] .lyr p.cur{color:var(--t1)}[data-theme=pickme] .scrim{background:rgba(200,40,120,.22)}
+[data-theme=pickme] .npc .viz{mix-blend-mode:normal;opacity:.75}
+[data-theme=pickme] ::selection{background:rgba(255,79,163,.28)}
+[data-theme=pickme] .pp,[data-theme=pickme] .m-ctl .pp{background:linear-gradient(150deg,#ff8cc6 0%,#ff4fa3 55%,#ff3d8f 100%);color:#fff;box-shadow:0 12px 28px -10px rgba(255,61,154,.7),inset 0 1px 0 rgba(255,255,255,.55)}
+[data-theme=pickme] .btns .pp:hover{background:linear-gradient(150deg,#ff9bd0,#ff3d9a);color:#fff}
+[data-theme=pickme] .m-ctl button,[data-theme=pickme] .btns button,[data-theme=pickme] .m-mini .m-ib,[data-theme=pickme] .m-fx button,[data-theme=pickme] .m-fh .m-ib{color:#f0569f}
+[data-theme=pickme] .m-ctl button.on,[data-theme=pickme] .btns button.on{color:#ff2f93;background:rgba(255,79,163,.12)}
+[data-theme=pickme] .m-ctl .pp,[data-theme=pickme] .btns .pp{color:#fff}
+[data-theme=pickme] .m-ti span,[data-theme=pickme] .m-fsrc small{color:#c0558c}
+[data-theme=pickme] .m-mini{background:rgba(255,255,255,.78);box-shadow:0 10px 30px -14px rgba(226,62,142,.45),inset 0 0 0 1px rgba(255,79,163,.12)}
+[data-theme=pickme] .m-tabs{background:rgba(255,247,251,.92);border-top:1px solid rgba(255,79,163,.12)}
+[data-theme=pickme] .m-tabs button{color:#d27aa6}[data-theme=pickme] .m-tabs button.on{color:#ff3d9a}
+[data-theme=pickme] .m-srch{background:#fff;box-shadow:inset 0 0 0 1px rgba(255,79,163,.16);color:#e07ab0}
+[data-theme=pickme] img.cv{box-shadow:0 14px 30px -16px rgba(226,62,142,.55),0 0 0 1px rgba(255,255,255,.7)}
+[data-theme=pickme] .m-art .cv{box-shadow:0 30px 60px -24px rgba(226,62,142,.6),0 0 0 4px rgba(255,255,255,.75)}
+[data-theme=pickme] .gtile{border:1px solid rgba(255,255,255,.6);box-shadow:0 12px 26px -16px rgba(226,62,142,.6)}
+[data-theme=pickme] .gtile.mix,[data-theme=pickme] .gtile.teto{background:linear-gradient(140deg,#ff9fd0,#ff4fa3 60%,#ff7ab9)!important;color:#fff}
+[data-theme=pickme] .mixb.teto{box-shadow:0 14px 30px -16px rgba(255,61,154,.6)}
+[data-theme=pickme] .tg.on{background:linear-gradient(135deg,#ff8cc6,#ff4fa3)}
+[data-theme=pickme] .m-fbg{opacity:.35}
+
+/* Apple: light grouped surfaces, Apple Music red */
+[data-theme=apple]{--bg:#f2f2f7;--bg-rgb:242,242,247;--s1:#ffffff;--s2:#ffffff;--s2-rgb:255,255,255;--s3:#ffffff;--s3-rgb:255,255,255;--acc:250,45,72;--acc2:255,100,130;--acc3:200,30,60;--acc-h:#e0223c;--on-acc:#fff;--tint:60,60,67;--txt:28,28,30;--t1:#1c1c1e;--bar:#f9f9fb;--on-pp:#fff;--pp-h:#000;--ov:0,0,0}
+[data-theme=apple] .np .glow{opacity:.45}[data-theme=apple] .lyr p.cur{color:var(--t1)}[data-theme=apple] .scrim{background:rgba(0,0,0,.25)}
+[data-theme=apple] .npc .viz{mix-blend-mode:normal;opacity:.7}
+/* Nothing: pure black, white type, one red signal colour */
+[data-theme=nothing]{--bg:#000000;--bg-rgb:0,0,0;--s1:#0d0d0d;--s2:#161616;--s2-rgb:22,22,22;--s3:#1e1e1e;--s3-rgb:30,30,30;--acc:215,25,33;--acc2:255,255,255;--acc3:110,110,110;--acc-h:#ff2a33;--on-acc:#fff;--tint:255,255,255;--txt:236,236,236;--t1:#ffffff;--bar:#000000;--on-pp:#000;--pp-h:#ddd;--ov:255,255,255}
+
+/* decorative light layer (pointer-events:none) — only themes that set --fx draw it */
+:root{--fx:none}
+#root::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:400;background:var(--fx);opacity:var(--fx-o,1);mix-blend-mode:var(--fx-blend,normal)}
+[data-viz="1"] #root::after{display:none}

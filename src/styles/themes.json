@@ -1,0 +1,58 @@
+{
+ "tide": {
+  "name": "Tide",
+  "bg": "#070b14",
+  "s1": "#0c1220",
+  "s2": "#111a2b",
+  "acc": "#7cc4ff",
+  "acc2": "#a99bff",
+  "t1": "#ecf3ff"
+ },
+ "teto": {
+  "name": "Teto",
+  "bg": "#0f0a0c",
+  "s1": "#160f12",
+  "s2": "#1d1418",
+  "acc": "#ff4d6d",
+  "acc2": "#ff8ca3",
+  "t1": "#fbeef1"
+ },
+ "oled": {
+  "name": "AMOLED",
+  "bg": "#000000",
+  "s1": "#050505",
+  "s2": "#0c0c0c",
+  "acc": "#ffffff",
+  "acc2": "#9a9aa2",
+  "t1": "#f5f5f7"
+ },
+ "pickme": {
+  "name": "Pick me",
+  "bg": "#fff0f7",
+  "s1": "#ffe3f0",
+  "s2": "#fff7fb",
+  "acc": "#ff4fa3",
+  "acc2": "#ffa6d5",
+  "t1": "#5e1d40",
+  "light": true
+ },
+ "apple": {
+  "name": "Apple",
+  "bg": "#f2f2f7",
+  "s1": "#ffffff",
+  "s2": "#ffffff",
+  "acc": "#fa2d48",
+  "acc2": "#ff6482",
+  "t1": "#1c1c1e",
+  "light": true
+ },
+ "nothing": {
+  "name": "Nothing",
+  "bg": "#000000",
+  "s1": "#0d0d0d",
+  "s2": "#161616",
+  "acc": "#d71921",
+  "acc2": "#ffffff",
+  "t1": "#ffffff"
+ }
+}
